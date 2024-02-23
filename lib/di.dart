@@ -11,7 +11,6 @@ final GetIt diContainer = GetIt.instance;
   // ExternalModule(CorePackageModule),
 ], externalPackageModulesAfter: [
   ExternalModule(GeneralWeatherPackageModule),
-  // ExternalModule(TaxDataPackageModule)
 ])
 Future<void> configureDependencies() async {
   // di = diContainer;
