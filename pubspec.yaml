@@ -17,6 +17,8 @@ dependencies:
   injectable:
   json_serializable:
   url_launcher:
+  general_weather:
+    path: ./features/general_weather
 
 dev_dependencies:
   flutter_test:
