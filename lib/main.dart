@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:general_weather/presentation/ui/general_weather_screen.dart';
 
+import 'di.dart';
+
 void main() {
+  configureDependencies();
   runApp(const MyApp());
 }
 
