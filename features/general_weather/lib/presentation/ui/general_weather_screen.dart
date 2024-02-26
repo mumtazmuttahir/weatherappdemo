@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:general_weather/configs/configs.dart';
 import 'package:general_weather/presentation/presentation.dart';
+import 'package:shared_design_components/colors/colors.dart';
+import 'package:shared_design_components/textstyles/organization_textstyles.dart';
 
-part 'components/day_date_section.dart';
+part 'components/1_day_date_section.dart';
 
 class GeneralWeatherScreen extends StatefulWidget {
   const GeneralWeatherScreen({super.key});

@@ -4,10 +4,10 @@ class DayDateSection extends StatelessWidget {
   final String day;
   final DateTime date;
   const DayDateSection({
-    Key? key,
+    super.key,
     required this.day,
     required this.date,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +15,15 @@ class DayDateSection extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(day),
-        Text('${date.day} ${MonthName.getMonthName(date.month)} ${date.year}')
+        Text(
+          day,
+          style: OrganizationTextStyle.heading3,
+        ),
+        Text(
+          '${date.day} ${MonthName.getMonthName(date.month)} ${date.year}',
+          style: OrganizationTextStyle.subTitle1
+              .apply(color: OrganizationColors.secondary),
+        )
       ],
     );
   }
