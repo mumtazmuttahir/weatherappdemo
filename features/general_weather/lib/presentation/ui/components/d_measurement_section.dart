@@ -1,4 +1,4 @@
-part of 'general_weather_screen.dart';
+part of '../general_weather_screen.dart';
 
 class MeasurementSection extends StatelessWidget {
   final int humidty;

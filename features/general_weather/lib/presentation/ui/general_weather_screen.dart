@@ -1,15 +1,19 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:general_weather/configs/configs.dart';
 import 'package:general_weather/presentation/presentation.dart';
+import 'package:http/http.dart';
 import 'package:shared_design_components/colors/colors.dart';
 import 'package:shared_design_components/textstyles/organization_textstyles.dart';
 
-part 'a_day_date_section.dart';
-part 'b_select_city.dart';
-part 'c_weather_summary.dart';
-part 'd_measurement_section.dart';
+part 'components/a_day_date_section.dart';
+part 'components/b_select_city.dart';
+part 'components/c_weather_summary.dart';
+part 'components/d_measurement_section.dart';
+part 'components/e_forcast_section.dart';
 
 class GeneralWeatherScreen extends StatefulWidget {
   const GeneralWeatherScreen({super.key});
@@ -51,6 +55,7 @@ class _GeneralWeatherScreenState extends State<GeneralWeatherScreen> {
               const VerticalSpace(spaceLength: Spacing.space24),
               const Divider(),
               const VerticalSpace(spaceLength: Spacing.space32),
+              const ForecastSection(),
             ],
           ),
         ),

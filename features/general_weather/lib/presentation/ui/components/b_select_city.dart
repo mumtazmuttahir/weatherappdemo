@@ -1,4 +1,4 @@
-part of 'general_weather_screen.dart';
+part of '../general_weather_screen.dart';
 
 class SelectCitySection extends StatelessWidget {
   const SelectCitySection({super.key});

@@ -28,6 +28,14 @@ class OrganizationTextStyle {
     color: OrganizationColors.primary,
   );
 
+  static const TextStyle heading4 = TextStyle(
+    package: 'shared_design_components',
+    fontFamily: 'Roboto-Regular',
+    fontSize: 20.0,
+    fontWeight: FontWeight.w500,
+    color: OrganizationColors.primary,
+  );
+
   static const TextStyle body1 = TextStyle(
     package: 'shared_design_components',
     fontFamily: 'Roboto-Regular',
