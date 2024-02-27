@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:general_weather/presentation/ui/general_weather_screen.dart';
+import 'package:general_weather/presentation/ui/ui.dart';
 
 import 'di.dart';
 
