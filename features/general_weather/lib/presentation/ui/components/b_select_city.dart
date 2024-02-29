@@ -8,33 +8,40 @@ class SelectCitySection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: screenPadding,
-      child: ElevatedButton(
-        onPressed: () {},
-        style: ButtonStyle(
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(4.0),
+      child: Container(
+        width: 175,
+        height: 40,
+        decoration: BoxDecoration(
+          color: OrganizationColors.secondaryBackground,
+          borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+              bottomLeft: Radius.circular(10),
+              bottomRight: Radius.circular(10)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: const Offset(0, 1), // changes position of shadow
             ),
-          ),
+          ],
         ),
-        child: SizedBox(
-          width: 175,
-          height: 40,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.location_pin,
-                color: OrganizationColors.primary,
-              ),
-              const HorizotalSpace(spaceLength: Spacing.space16),
-              Text(
-                cityName,
-                style: OrganizationTextStyle.subTitle1,
-              ),
-            ],
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const HorizotalSpace(spaceLength: Spacing.space4),
+            const Icon(
+              Icons.location_pin,
+              color: OrganizationColors.primary,
+            ),
+            const HorizotalSpace(spaceLength: Spacing.space8),
+            Text(
+              cityName,
+              style: OrganizationTextStyle.subTitle1,
+            ),
+          ],
         ),
       ),
     );
