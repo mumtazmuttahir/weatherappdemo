@@ -11,7 +11,7 @@ CityWeather _$CityWeatherFromJson(Map<String, dynamic> json) => CityWeather(
       message: json['message'] as int?,
       cnt: json['cnt'] as int?,
       list: (json['list'] as List<dynamic>?)
-          ?.map((e) => e as List<dynamic>)
+          ?.map((e) => ForcastList.fromJson(e as Map<String, dynamic>))
           .toList(),
       city: json['city'] == null
           ? null

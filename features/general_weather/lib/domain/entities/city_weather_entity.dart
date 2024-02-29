@@ -9,7 +9,7 @@ class CityWeather extends Equatable {
   final String? cod;
   final int? message;
   final int? cnt;
-  final List<List>? list;
+  final List<ForcastList>? list;
   final City? city;
 
   const CityWeather({this.cod, this.message, this.cnt, this.list, this.city});

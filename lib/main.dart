@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:general_weather/data/data_sources/data_sources.dart';
+import 'package:general_weather/data/implemented_repositories/implemented_repositories.dart';
+import 'package:general_weather/domain/domain.dart';
+import 'package:general_weather/domain/repositories/weather_repository.dart';
+import 'package:general_weather/presentation/logic/fetch_weather_cubit/fetch_weather_cubit.dart';
 import 'package:general_weather/presentation/ui/ui.dart';
 
 import 'di.dart';
@@ -19,7 +25,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const GeneralWeatherScreen(),
+      home: BlocProvider<FetchWeatherCubit>(
+        create: (blocContext) => FetchWeatherCubit(
+            FetchWeatherUseCase(WeatherRepositoryImpl(WeatherApi())))
+          ..initialize(),
+        child: const GeneralWeatherScreen(),
+      ),
     );
   }
 }

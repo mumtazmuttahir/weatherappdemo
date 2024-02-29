@@ -1,11 +1,10 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:general_weather/configs/configs.dart';
+import 'package:general_weather/presentation/logic/fetch_weather_cubit/fetch_weather_cubit.dart';
 import 'package:general_weather/presentation/presentation.dart';
-import 'package:http/http.dart';
 import 'package:shared_design_components/colors/colors.dart';
 import 'package:shared_design_components/textstyles/organization_textstyles.dart';
 
@@ -24,42 +23,59 @@ class GeneralWeatherScreen extends StatefulWidget {
 
 class _GeneralWeatherScreenState extends State<GeneralWeatherScreen> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 96.0, bottom: 64),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              DayDateSection(
-                day: 'FRIDAY',
-                date: DateTime.now(),
+    return BlocConsumer<FetchWeatherCubit, FetchWeatherState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        return Scaffold(
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 96.0, bottom: 64),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  DayDateSection(
+                    day: 'FRIDAY',
+                    date: DateTime.now(),
+                  ),
+                  const VerticalSpace(spaceLength: Spacing.space24),
+                  const SelectCitySection(),
+                  const VerticalSpace(spaceLength: Spacing.space32),
+                  const WeatherSummary(
+                    temparature: 20,
+                    weatherCondition: 'cloudy',
+                  ),
+                  const VerticalSpace(spaceLength: Spacing.space32),
+                  const Divider(),
+                  const VerticalSpace(spaceLength: Spacing.space24),
+                  const MeasurementSection(
+                    humidty: 67,
+                    pressure: 1000,
+                    wind: 32,
+                  ),
+                  const VerticalSpace(spaceLength: Spacing.space24),
+                  const Divider(),
+                  const VerticalSpace(spaceLength: Spacing.space32),
+                  const ForecastSection(),
+                ],
               ),
-              const VerticalSpace(spaceLength: Spacing.space24),
-              const SelectCitySection(),
-              const VerticalSpace(spaceLength: Spacing.space32),
-              const WeatherSummary(
-                temparature: 20,
-                weatherCondition: 'cloudy',
-              ),
-              const VerticalSpace(spaceLength: Spacing.space32),
-              const Divider(),
-              const VerticalSpace(spaceLength: Spacing.space24),
-              const MeasurementSection(
-                humidty: 67,
-                pressure: 1000,
-                wind: 32,
-              ),
-              const VerticalSpace(spaceLength: Spacing.space24),
-              const Divider(),
-              const VerticalSpace(spaceLength: Spacing.space32),
-              const ForecastSection(),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

@@ -2,6 +2,7 @@ export 'city_entity.dart';
 export 'city_weather_entity.dart';
 export 'clouds_entity.dart';
 export 'coord_entity.dart';
+export 'fetch_weather_request.dart';
 export 'list_entity.dart';
 export 'main_entity.dart';
 export 'rain_entity.dart';

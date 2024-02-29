@@ -19,8 +19,11 @@ dependencies:
   get_it:
   http:
   injectable:
+  intl:
   json_serializable:
   json_annotation:
+  core:
+    path: ../../core
   shared_design_components:
     path: ../../shared_design_components
 

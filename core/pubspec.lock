@@ -161,13 +161,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.1"
-  core:
-    dependency: "direct main"
-    description:
-      path: "../../core"
-      relative: true
-    source: path
-    version: "1.0.0+1"
   crypto:
     dependency: transitive
     description:
@@ -338,14 +331,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.1"
-  intl:
-    dependency: "direct main"
-    description:
-      name: intl
-      sha256: d6f56758b7d3014a48af9701c085700aac781a92a87a62b1333b46d8879661cf
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.19.0"
   io:
     dependency: transitive
     description:
@@ -502,10 +487,10 @@ packages:
     dependency: transitive
     description:
       name: provider
-      sha256: "9a96a0a19b594dbc5bf0f1f27d2bc67d5f95957359b461cd9feb44ed6ae75096"
+      sha256: c8a055ee5ce3fd98d6fc872478b03823ffdb448699c6ebdbbc71d59b596fd48c
       url: "https://pub.dev"
     source: hosted
-    version: "6.1.1"
+    version: "6.1.2"
   pub_semver:
     dependency: transitive
     description:
@@ -530,13 +515,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.0"
-  shared_design_components:
-    dependency: "direct main"
-    description:
-      path: "../../shared_design_components"
-      relative: true
-    source: path
-    version: "1.0.0+1"
   shelf:
     dependency: transitive
     description:
