@@ -1,10 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:general_weather/configs/configs.dart';
 import 'package:general_weather/domain/domain.dart';
-import 'package:general_weather/domain/enums/enums.dart';
 import 'package:general_weather/presentation/logic/fetch_weather_cubit/fetch_weather_cubit.dart';
 import 'package:general_weather/presentation/presentation.dart';
 import 'package:shared_design_components/colors/colors.dart';
@@ -25,6 +26,8 @@ class GeneralWeatherScreen extends StatefulWidget {
 }
 
 class _GeneralWeatherScreenState extends State<GeneralWeatherScreen> {
+  Timer? timer;
+  int counter = 0;
   @override
   void initState() {
     super.initState();
@@ -32,6 +35,7 @@ class _GeneralWeatherScreenState extends State<GeneralWeatherScreen> {
 
   @override
   void dispose() {
+    timer?.cancel();
     super.dispose();
   }
 
@@ -97,6 +101,20 @@ class _GeneralWeatherScreenState extends State<GeneralWeatherScreen> {
                     const Divider(),
                     const VerticalSpace(spaceLength: Spacing.space32),
                     ForecastSection(forecastList: state.forcastList),
+                  ],
+                  if (state.status == WeatherStatus.refreshing) ...[
+                    const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  ],
+                  if (state.status == WeatherStatus.error) ...[
+                    Center(
+                      child: ElevatedButton(
+                          onPressed: () {
+                            context.read<FetchWeatherCubit>().initialize();
+                          },
+                          child: const Text('Press to restart')),
+                    )
                   ]
                 ],
               ),

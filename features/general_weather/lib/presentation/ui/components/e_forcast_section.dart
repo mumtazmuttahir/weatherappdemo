@@ -6,23 +6,6 @@ class ForecastSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final List<String> forecastDaysList = [
-    //   'Fri',
-    //   'Sat',
-    //   'Sun',
-    //   'Mon',
-    //   'Tue',
-    //   'Wed',
-    //   'Thu'
-    // ];
-    if (forecastList != null) {
-      print('forecastList = ${forecastList!.length}');
-      for (int index = 0; index < forecastList!.length; index++) {
-        print(forecastList![index]);
-      }
-    } else {
-      print('forecastList = 0');
-    }
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(

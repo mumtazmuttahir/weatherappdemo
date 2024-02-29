@@ -8,9 +8,9 @@ part 'city_weather_entity.g.dart';
 class CityWeather with EquatableMixin {
   final String cod;
   final int message;
-  final int cnt;
-  final List<ForcastList> list;
-  final City city;
+  final int? cnt;
+  final List<ForcastList>? list;
+  final City? city;
 
   const CityWeather({
     required this.cod,

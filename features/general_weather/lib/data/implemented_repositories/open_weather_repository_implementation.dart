@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:general_weather/domain/domain.dart';
-import 'package:http/http.dart' as http;
 import 'package:general_weather/data/data_sources/data_sources.dart';
 import 'package:general_weather/domain/repositories/weather_repository.dart';
 import 'package:injectable/injectable.dart';
@@ -25,9 +24,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
     // var responseData = json.decode(httpResponse.body);
     CityWeather weatherResponse = CityWeather.fromJson(
         jsonDecode(httpResponse.body) as Map<String, dynamic>);
-    for (int index = 0; index < weatherResponse.list!.length; index++) {
-      print(weatherResponse.list![index].main);
-    }
+
     return weatherResponse;
   }
 }

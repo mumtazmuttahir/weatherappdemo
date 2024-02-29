@@ -23,7 +23,7 @@ class WeatherApi {
     final url = Uri.parse(
         'http://api.openweathermap.org/data/2.5/forecast?lat=$latitude&lon=$longitude&unit=metric&APPID=$appId');
     final getResponse = await http.get(url);
-    print(getResponse.body);
+
     return getResponse;
   }
 }

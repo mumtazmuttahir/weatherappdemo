@@ -1,10 +1,6 @@
-// import 'package:collection/collection.dart';
-// import 'dart:html';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-// import 'package:intl/intl.dart';
 import 'package:general_weather/domain/domain.dart';
 import 'package:shared_design_components/constants/constants.dart';
 
@@ -39,17 +35,18 @@ class FetchWeatherCubit extends Cubit<FetchWeatherState> {
     CityWeather response = await _fetchWeatherUseCase.call(parameters: request);
 
     var code = response.cod;
-    if (code!.contains('200')) {
+    if (int.parse(code) == 200) {
       var date =
-          DateTime.fromMillisecondsSinceEpoch(response.list![0].dt! * 1000);
+          DateTime.fromMillisecondsSinceEpoch(response.list![0].dt * 1000);
       String weekDay = Weekday.getWeekday(date.weekday);
-      String dateNow = '${date.day} ${date.month} ${date.year}';
-      String cityName = response.city!.name!;
-      double currentTemparature = response.list![0].main!.temp! - 273.16;
-      String weather = response.list![0].weather![0].main!;
-      int humidity = response.list![0].main!.humidity!;
-      int pressure = response.list![0].main!.pressure!;
-      double wind = response.list![0].wind!.speed!;
+      String dateNow =
+          '${date.day} ${Month.getMonthName(date.month)} ${date.year}';
+      String cityName = response.city!.name;
+      double currentTemparature = response.list![0].main.temp - 273.16;
+      String weather = response.list![0].weather[0].main;
+      int humidity = response.list![0].main.humidity;
+      int pressure = response.list![0].main.pressure;
+      double wind = response.list![0].wind.speed;
 
       List<ForcastList> list = [];
       for (int index = 0; index < response.list!.length; index++) {
@@ -69,8 +66,6 @@ class FetchWeatherCubit extends Cubit<FetchWeatherState> {
         wind,
         list,
       ));
-
-      // emit(FetchWeatherState.loaded());
     } else {
       print('failed');
       emit(state.withStatus(WeatherStatus.error));
