@@ -22,10 +22,10 @@ class WeatherRepositoryImpl implements WeatherRepository {
         latitude: latitude, longitude: longitude);
     var body = httpResponse.body;
     Map<String, dynamic> myMap = jsonDecode(body) as Map<String, dynamic>;
-    if (myMap["cod"] is int) {
-      String code = myMap["cod"].toString();
+    if (myMap['cod'] is int) {
+      String code = "${myMap['cod']}";
       int message = 0;
-      final newBody = '{"cod": $code,"message": ${message.toInt()}}';
+      final newBody = '{"cod": "$code","message": $message}';
       body = newBody;
     }
 

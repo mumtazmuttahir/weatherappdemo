@@ -9,19 +9,11 @@ part 'fetch_weather_state.dart';
 @Injectable()
 class FetchWeatherCubit extends Cubit<FetchWeatherState> {
   final FetchWeatherUseCase _fetchWeatherUseCase;
-  // final _weatherDateFormat = DateFormat('dddd MMMM yyyy');
   FetchWeatherCubit(this._fetchWeatherUseCase)
       : super(FetchWeatherState.initial());
 
   List<ForcastList> list = [];
-  // String weekDay = '';
-  // String dateNow = '';
   String cityName = '';
-  // double currentTemparature = 0.0;
-  // String weather = '';
-  // int humidity = 0;
-  // int pressure = 0;
-  // double wind = 0;
 
   void initialize() {
     CityDesc city = listOfCities.cities[0];
@@ -66,17 +58,12 @@ class FetchWeatherCubit extends Cubit<FetchWeatherState> {
       double wind = response.list![0].wind.speed;
 
       list = [];
-      // for (int index = 0; index < response.list!.length; index++) {
-      //   if (index % 7 == 0) {
-      //     list.add(response.list![index]);
-      //   }
-      // }
-      list.add(response.list![0]);
-      list.add(response.list![6]);
-      list.add(response.list![13]);
-      list.add(response.list![20]);
-      list.add(response.list![27]);
-      list.add(response.list![34]);
+      for (int index = 0; index < response.list!.length; index += 7) {
+        list.add(response.list![index]);
+        if (list.length == 5) {
+          break;
+        }
+      }
 
       emit(FetchWeatherState.loaded(
         weekDay,
