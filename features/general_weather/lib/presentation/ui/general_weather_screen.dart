@@ -48,84 +48,93 @@ class _GeneralWeatherScreenState extends State<GeneralWeatherScreen> {
     super.dispose();
   }
 
+  Future<void> _refreshData() async {
+    context.read<FetchWeatherCubit>().refrestWeather();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FetchWeatherCubit, FetchWeatherState>(
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 96.0, bottom: 64),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  if (state.status == WeatherStatus.loading) ...[
-                    DayDateSection(
-                      day: state.weekDay,
-                      date: state.dateToday,
-                    ),
-                    const VerticalSpace(spaceLength: Spacing.space24),
-                    SelectCitySection(cityName: state.cityName),
-                    const VerticalSpace(spaceLength: Spacing.space32),
-                    WeatherSummary(
-                      temparature: state.temparature,
-                      weatherCondition: state.weather,
-                    ),
-                    const VerticalSpace(spaceLength: Spacing.space32),
-                    const Divider(),
-                    const VerticalSpace(spaceLength: Spacing.space24),
-                    MeasurementSection(
-                      humidty: state.humidity.toDouble(),
-                      pressure: state.pressure.toDouble(),
-                      wind: state.wind,
-                    ),
-                    const VerticalSpace(spaceLength: Spacing.space24),
-                    const Divider(),
-                    const VerticalSpace(spaceLength: Spacing.space32),
-                    ForecastSection(forecastList: state.forcastList),
+          body: RefreshIndicator(
+            onRefresh: _refreshData,
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 96.0, bottom: 64),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    if (state.status == WeatherStatus.loading) ...[
+                      DayDateSection(
+                        day: state.weekDay,
+                        date: state.dateToday,
+                      ),
+                      const VerticalSpace(spaceLength: Spacing.space24),
+                      SelectCitySection(cityName: state.cityName),
+                      const VerticalSpace(spaceLength: Spacing.space32),
+                      WeatherSummary(
+                        temparature: state.temparature,
+                        weatherCondition: state.weather,
+                      ),
+                      const VerticalSpace(spaceLength: Spacing.space32),
+                      const Divider(),
+                      const VerticalSpace(spaceLength: Spacing.space24),
+                      MeasurementSection(
+                        humidty: state.humidity.toDouble(),
+                        pressure: state.pressure.toDouble(),
+                        wind: state.wind,
+                      ),
+                      const VerticalSpace(spaceLength: Spacing.space24),
+                      const Divider(),
+                      const VerticalSpace(spaceLength: Spacing.space32),
+                      ForecastSection(forecastList: state.forcastList),
+                    ],
+                    if (state.status == WeatherStatus.loaded) ...[
+                      DayDateSection(
+                        day: state.weekDay,
+                        date: state.dateToday,
+                      ),
+                      const VerticalSpace(spaceLength: Spacing.space24),
+                      SelectCitySection(cityName: state.cityName),
+                      const VerticalSpace(spaceLength: Spacing.space32),
+                      WeatherSummary(
+                        temparature: state.temparature,
+                        weatherCondition: state.weather,
+                      ),
+                      const VerticalSpace(spaceLength: Spacing.space32),
+                      const Divider(),
+                      const VerticalSpace(spaceLength: Spacing.space24),
+                      MeasurementSection(
+                        humidty: state.humidity.toDouble(),
+                        pressure: state.pressure.toDouble(),
+                        wind: state.wind,
+                      ),
+                      const VerticalSpace(spaceLength: Spacing.space24),
+                      const Divider(),
+                      const VerticalSpace(spaceLength: Spacing.space32),
+                      ForecastSection(forecastList: state.forcastList),
+                    ],
+                    if (state.status == WeatherStatus.refreshing) ...[
+                      const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    ],
+                    if (state.status == WeatherStatus.error) ...[
+                      Center(
+                        child: ElevatedButton(
+                            onPressed: () {
+                              context.read<FetchWeatherCubit>().initialize();
+                              counter = 0;
+                            },
+                            child: const Text('Press to restart')),
+                      )
+                    ]
                   ],
-                  if (state.status == WeatherStatus.loaded) ...[
-                    DayDateSection(
-                      day: state.weekDay,
-                      date: state.dateToday,
-                    ),
-                    const VerticalSpace(spaceLength: Spacing.space24),
-                    SelectCitySection(cityName: state.cityName),
-                    const VerticalSpace(spaceLength: Spacing.space32),
-                    WeatherSummary(
-                      temparature: state.temparature,
-                      weatherCondition: state.weather,
-                    ),
-                    const VerticalSpace(spaceLength: Spacing.space32),
-                    const Divider(),
-                    const VerticalSpace(spaceLength: Spacing.space24),
-                    MeasurementSection(
-                      humidty: state.humidity.toDouble(),
-                      pressure: state.pressure.toDouble(),
-                      wind: state.wind,
-                    ),
-                    const VerticalSpace(spaceLength: Spacing.space24),
-                    const Divider(),
-                    const VerticalSpace(spaceLength: Spacing.space32),
-                    ForecastSection(forecastList: state.forcastList),
-                  ],
-                  if (state.status == WeatherStatus.refreshing) ...[
-                    const Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  ],
-                  if (state.status == WeatherStatus.error) ...[
-                    Center(
-                      child: ElevatedButton(
-                          onPressed: () {
-                            context.read<FetchWeatherCubit>().initialize();
-                          },
-                          child: const Text('Press to restart')),
-                    )
-                  ]
-                ],
+                ),
               ),
             ),
           ),

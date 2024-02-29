@@ -66,11 +66,17 @@ class FetchWeatherCubit extends Cubit<FetchWeatherState> {
       double wind = response.list![0].wind.speed;
 
       list = [];
-      for (int index = 0; index < response.list!.length; index++) {
-        if (index % 7 == 0) {
-          list.add(response.list![index]);
-        }
-      }
+      // for (int index = 0; index < response.list!.length; index++) {
+      //   if (index % 7 == 0) {
+      //     list.add(response.list![index]);
+      //   }
+      // }
+      list.add(response.list![0]);
+      list.add(response.list![6]);
+      list.add(response.list![13]);
+      list.add(response.list![20]);
+      list.add(response.list![27]);
+      list.add(response.list![34]);
 
       emit(FetchWeatherState.loaded(
         weekDay,
@@ -84,14 +90,12 @@ class FetchWeatherCubit extends Cubit<FetchWeatherState> {
         list,
       ));
     } else {
-      print('failed');
       emit(state.withStatus(WeatherStatus.error));
     }
   }
 
   void updateWeatherForADay(int index) {
     ForcastList instance = list[index];
-    print(instance);
     var date = DateTime.fromMillisecondsSinceEpoch(instance.dt * 1000);
     String weekDay = Weekday.getWeekday(date.weekday);
     String dateNow =

@@ -75,8 +75,6 @@ class SingleDayForecastBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print(day);
-        print(indexNumber);
         context.read<FetchWeatherCubit>().updateWeatherForADay(indexNumber);
       },
       child: Container(
