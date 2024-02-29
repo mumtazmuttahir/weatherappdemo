@@ -20,8 +20,15 @@ class WeatherRepositoryImpl implements WeatherRepository {
       {required double latitude, required double longitude}) async {
     final httpResponse = await _weatherApi.fetchWeather(
         latitude: latitude, longitude: longitude);
+    // print(httpResponse.body);
+    // Map<String, dynamic> myMap =
+    //     jsonDecode(httpResponse.body) as Map<String, dynamic>;
+    // if (myMap["cod"] is int) {
+    //   print("int");
+    // } else {
+    //   print("string");
+    // }
 
-    // var responseData = json.decode(httpResponse.body);
     CityWeather weatherResponse = CityWeather.fromJson(
         jsonDecode(httpResponse.body) as Map<String, dynamic>);
 

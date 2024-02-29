@@ -31,6 +31,15 @@ class _GeneralWeatherScreenState extends State<GeneralWeatherScreen> {
   @override
   void initState() {
     super.initState();
+    timer = Timer.periodic(
+        const Duration(milliseconds: 60000),
+        (Timer t) => setState(() {
+              counter++;
+              if (counter > 4) {
+                counter = 0;
+              }
+              context.read<FetchWeatherCubit>().fetchNewCity(counter);
+            }));
   }
 
   @override

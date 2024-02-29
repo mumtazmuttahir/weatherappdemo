@@ -19,7 +19,7 @@ class SelectCitySection extends StatelessWidget {
           ),
         ),
         child: SizedBox(
-          width: 146,
+          width: 160,
           height: 40,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
