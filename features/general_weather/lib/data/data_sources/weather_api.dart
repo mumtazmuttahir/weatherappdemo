@@ -20,9 +20,8 @@ class WeatherApi {
   // final response = await http.post(baseURL)
   Future<http.Response> fetchWeather(
       {required double latitude, required double longitude}) async {
-    print('weatherApiKey = $weatherApiKey');
     final url = Uri.parse(
-        'http://api.openweathermap.org/data/2.5/forecast?lat=$latitude&lon=$longitude&APPID=$appId');
+        'http://api.openweathermap.org/data/2.5/forecast?lat=$latitude&lon=$longitude&unit=metric&APPID=$appId');
     final getResponse = await http.get(url);
     print(getResponse.body);
     return getResponse;

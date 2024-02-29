@@ -7,16 +7,14 @@ part of 'city_entity.dart';
 // **************************************************************************
 
 City _$CityFromJson(Map<String, dynamic> json) => City(
-      id: json['id'] as int?,
-      name: json['name'] as String?,
-      coord: json['coord'] == null
-          ? null
-          : Coord.fromJson(json['coord'] as Map<String, dynamic>),
-      country: json['country'] as String?,
-      population: json['population'] as int?,
-      timezone: json['timezone'] as int?,
-      sunrise: json['sunrise'] as int?,
-      sunset: json['sunset'] as int?,
+      id: json['id'] as int,
+      name: json['name'] as String,
+      coord: Coord.fromJson(json['coord'] as Map<String, dynamic>),
+      country: json['country'] as String,
+      population: json['population'] as int,
+      timezone: json['timezone'] as int,
+      sunrise: json['sunrise'] as int,
+      sunset: json['sunset'] as int,
     );
 
 Map<String, dynamic> _$CityToJson(City instance) => <String, dynamic>{

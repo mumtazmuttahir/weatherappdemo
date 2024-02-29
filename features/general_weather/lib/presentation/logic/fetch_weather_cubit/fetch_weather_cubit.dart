@@ -18,7 +18,14 @@ class FetchWeatherCubit extends Cubit<FetchWeatherState> {
       : super(FetchWeatherState.initial());
 
   void initialize() {
-    print('initialize called');
+    CityDesc city = listOfCities.cities[0];
+    double latitude = city.latitude;
+    double longitiude = city.longitude;
+    emit(FetchWeatherState.loading());
+    fetchWeather(latitude, longitiude);
+  }
+
+  void refrestWeather() {
     CityDesc city = listOfCities.cities[0];
     double latitude = city.latitude;
     double longitiude = city.longitude;
@@ -26,15 +33,47 @@ class FetchWeatherCubit extends Cubit<FetchWeatherState> {
   }
 
   void fetchWeather(double latitude, double longitude) async {
+    emit(state.withStatus(WeatherStatus.loading));
     FetchWeatherRequest request =
         FetchWeatherRequest(latitude: latitude, longitude: longitude);
     CityWeather response = await _fetchWeatherUseCase.call(parameters: request);
 
     var code = response.cod;
     if (code!.contains('200')) {
-      print('success');
+      var date =
+          DateTime.fromMillisecondsSinceEpoch(response.list![0].dt! * 1000);
+      String weekDay = Weekday.getWeekday(date.weekday);
+      String dateNow = '${date.day} ${date.month} ${date.year}';
+      String cityName = response.city!.name!;
+      double currentTemparature = response.list![0].main!.temp! - 273.16;
+      String weather = response.list![0].weather![0].main!;
+      int humidity = response.list![0].main!.humidity!;
+      int pressure = response.list![0].main!.pressure!;
+      double wind = response.list![0].wind!.speed!;
+
+      List<ForcastList> list = [];
+      for (int index = 0; index < response.list!.length; index++) {
+        if (index % 7 == 0) {
+          list.add(response.list![index]);
+        }
+      }
+
+      emit(FetchWeatherState.loaded(
+        weekDay,
+        dateNow,
+        cityName,
+        currentTemparature,
+        weather,
+        humidity,
+        pressure,
+        wind,
+        list,
+      ));
+
+      // emit(FetchWeatherState.loaded());
     } else {
       print('failed');
+      emit(state.withStatus(WeatherStatus.error));
     }
   }
 }

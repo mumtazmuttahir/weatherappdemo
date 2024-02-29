@@ -7,7 +7,7 @@ part of 'rain_entity.dart';
 // **************************************************************************
 
 Rain _$RainFromJson(Map<String, dynamic> json) => Rain(
-      d3h: (json['d3h'] as num?)?.toDouble(),
+      d3h: (json['d3h'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$RainToJson(Rain instance) => <String, dynamic>{

@@ -5,25 +5,25 @@ import 'entities.dart';
 part 'city_entity.g.dart';
 
 @JsonSerializable()
-class City extends Equatable {
-  final int? id;
-  final String? name;
-  final Coord? coord;
-  final String? country;
-  final int? population;
-  final int? timezone;
-  final int? sunrise;
-  final int? sunset;
+class City with EquatableMixin {
+  final int id;
+  final String name;
+  final Coord coord;
+  final String country;
+  final int population;
+  final int timezone;
+  final int sunrise;
+  final int sunset;
 
   const City(
-      {this.id,
-      this.name,
-      this.coord,
-      this.country,
-      this.population,
-      this.timezone,
-      this.sunrise,
-      this.sunset});
+      {required this.id,
+      required this.name,
+      required this.coord,
+      required this.country,
+      required this.population,
+      required this.timezone,
+      required this.sunrise,
+      required this.sunset});
 
   factory City.fromJson(Map<String, dynamic> json) => _$CityFromJson(json);
 

@@ -5,14 +5,20 @@ import 'entities.dart';
 part 'city_weather_entity.g.dart';
 
 @JsonSerializable()
-class CityWeather extends Equatable {
-  final String? cod;
-  final int? message;
-  final int? cnt;
-  final List<ForcastList>? list;
-  final City? city;
+class CityWeather with EquatableMixin {
+  final String cod;
+  final int message;
+  final int cnt;
+  final List<ForcastList> list;
+  final City city;
 
-  const CityWeather({this.cod, this.message, this.cnt, this.list, this.city});
+  const CityWeather({
+    required this.cod,
+    required this.message,
+    required this.cnt,
+    required this.list,
+    required this.city,
+  });
 
   factory CityWeather.fromJson(Map<String, dynamic> json) =>
       _$CityWeatherFromJson(json);

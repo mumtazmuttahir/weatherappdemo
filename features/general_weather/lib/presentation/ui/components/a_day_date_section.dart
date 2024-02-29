@@ -2,7 +2,7 @@ part of '../general_weather_screen.dart';
 
 class DayDateSection extends StatelessWidget {
   final String day;
-  final DateTime date;
+  final String date;
   const DayDateSection({
     super.key,
     required this.day,
@@ -22,7 +22,7 @@ class DayDateSection extends StatelessWidget {
             style: OrganizationTextStyle.heading3,
           ),
           Text(
-            '${date.day} ${MonthName.getMonthName(date.month)} ${date.year}',
+            date,
             style: OrganizationTextStyle.subTitle1
                 .apply(color: OrganizationColors.secondary),
           )

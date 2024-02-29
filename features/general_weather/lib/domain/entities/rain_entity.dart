@@ -4,10 +4,10 @@ import 'package:json_annotation/json_annotation.dart';
 part 'rain_entity.g.dart';
 
 @JsonSerializable()
-class Rain extends Equatable {
-  final double? d3h;
+class Rain with EquatableMixin {
+  final double d3h;
 
-  const Rain({this.d3h});
+  const Rain({required this.d3h});
 
   factory Rain.fromJson(Map<String, dynamic> json) => _$RainFromJson(json);
 

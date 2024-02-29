@@ -25,6 +25,9 @@ class WeatherRepositoryImpl implements WeatherRepository {
     // var responseData = json.decode(httpResponse.body);
     CityWeather weatherResponse = CityWeather.fromJson(
         jsonDecode(httpResponse.body) as Map<String, dynamic>);
+    for (int index = 0; index < weatherResponse.list!.length; index++) {
+      print(weatherResponse.list![index].main);
+    }
     return weatherResponse;
   }
 }

@@ -5,29 +5,28 @@ import 'entities.dart';
 part 'list_entity.g.dart';
 
 @JsonSerializable()
-class ForcastList extends Equatable {
-  final int? dt;
-  final Main? main;
-  final List<Weather>? weather;
-  final Clouds? clouds;
-  final Wind? wind;
-  final int? visibility;
-  final double? pop;
-  final Rain? rain;
-  final Sys? sys;
-  final String? dtTxt;
+class ForcastList with EquatableMixin {
+  final int dt;
+  final Main main;
+  final List<Weather> weather;
+  final Clouds clouds;
+  final Wind wind;
+  final int visibility;
+  final double pop;
+  final Sys sys;
+  final String dtTxt;
 
-  const ForcastList(
-      {this.dt,
-      this.main,
-      this.weather,
-      this.clouds,
-      this.wind,
-      this.visibility,
-      this.pop,
-      this.rain,
-      this.sys,
-      this.dtTxt});
+  const ForcastList({
+    required this.dt,
+    required this.main,
+    required this.weather,
+    required this.clouds,
+    required this.wind,
+    required this.visibility,
+    required this.pop,
+    required this.sys,
+    required this.dtTxt,
+  });
 
   factory ForcastList.fromJson(Map<String, dynamic> json) =>
       _$ForcastListFromJson(json);
@@ -43,7 +42,6 @@ class ForcastList extends Equatable {
         wind,
         visibility,
         pop,
-        rain,
         sys,
         dtTxt,
       ];

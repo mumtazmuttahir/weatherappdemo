@@ -5,12 +5,12 @@ class FetchWeatherState with EquatableMixin {
   final String weekDay;
   final String dateToday;
   final String cityName;
-  final String temparature;
+  final double temparature;
   final String weather;
   final List<ForcastList>? forcastList;
   final int humidity;
   final int pressure;
-  final int wind;
+  final double wind;
 
   FetchWeatherState({
     required this.status,
@@ -30,7 +30,7 @@ class FetchWeatherState with EquatableMixin {
         weekDay: '-',
         dateToday: '-',
         cityName: '-',
-        temparature: '-',
+        temparature: 0,
         weather: '-',
         humidity: 0,
         pressure: 0,
@@ -43,7 +43,7 @@ class FetchWeatherState with EquatableMixin {
         weekDay: '-',
         dateToday: '-',
         cityName: '-',
-        temparature: '-',
+        temparature: 0,
         weather: '-',
         humidity: 0,
         pressure: 0,
@@ -55,11 +55,11 @@ class FetchWeatherState with EquatableMixin {
     String weekDay,
     String dateToday,
     String cityName,
-    String temparature,
+    double temparature,
     String weather,
     int humidity,
     int pressure,
-    int wind,
+    double wind,
     List<ForcastList> forcastList,
   ) =>
       FetchWeatherState(

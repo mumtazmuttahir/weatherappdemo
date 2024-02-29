@@ -14,7 +14,7 @@ class WeatherSummary extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          const Column(
+          Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -23,10 +23,12 @@ class WeatherSummary extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '20',
+                    (temparature < 10)
+                        ? '0${temparature.toInt()}'
+                        : temparature.toInt().toString(),
                     style: OrganizationTextStyle.heading1,
                   ),
-                  Column(
+                  const Column(
                     children: [
                       Text(
                         '°',
@@ -37,7 +39,7 @@ class WeatherSummary extends StatelessWidget {
                 ],
               ),
               Text(
-                'Showers',
+                weatherCondition,
                 style: OrganizationTextStyle.body2,
               ),
             ],

@@ -1,9 +1,9 @@
 part of '../general_weather_screen.dart';
 
 class MeasurementSection extends StatelessWidget {
-  final int humidty;
-  final int pressure;
-  final int wind;
+  final double humidty;
+  final double pressure;
+  final double wind;
   const MeasurementSection({
     required this.humidty,
     required this.pressure,
@@ -42,7 +42,7 @@ class MeasurementSection extends StatelessWidget {
 class SubSection extends StatelessWidget {
   final String subSectionName;
   final String subSectionMeasureScale;
-  final int subSectionMeasureValue;
+  final double subSectionMeasureValue;
   const SubSection({
     required this.subSectionName,
     required this.subSectionMeasureScale,
@@ -66,7 +66,7 @@ class SubSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              subSectionMeasureValue.toString(),
+              subSectionMeasureValue.toInt().toString(),
               style: OrganizationTextStyle.body1,
             ),
             const HorizotalSpace(spaceLength: Spacing.space4),

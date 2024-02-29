@@ -3,9 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:general_weather/configs/configs.dart';
+import 'package:general_weather/domain/domain.dart';
+import 'package:general_weather/domain/enums/enums.dart';
 import 'package:general_weather/presentation/logic/fetch_weather_cubit/fetch_weather_cubit.dart';
 import 'package:general_weather/presentation/presentation.dart';
 import 'package:shared_design_components/colors/colors.dart';
+import 'package:shared_design_components/constants/constants.dart';
 import 'package:shared_design_components/textstyles/organization_textstyles.dart';
 
 part 'components/a_day_date_section.dart';
@@ -35,9 +38,7 @@ class _GeneralWeatherScreenState extends State<GeneralWeatherScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FetchWeatherCubit, FetchWeatherState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
           body: SingleChildScrollView(
@@ -47,29 +48,56 @@ class _GeneralWeatherScreenState extends State<GeneralWeatherScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  DayDateSection(
-                    day: 'FRIDAY',
-                    date: DateTime.now(),
-                  ),
-                  const VerticalSpace(spaceLength: Spacing.space24),
-                  const SelectCitySection(),
-                  const VerticalSpace(spaceLength: Spacing.space32),
-                  const WeatherSummary(
-                    temparature: 20,
-                    weatherCondition: 'cloudy',
-                  ),
-                  const VerticalSpace(spaceLength: Spacing.space32),
-                  const Divider(),
-                  const VerticalSpace(spaceLength: Spacing.space24),
-                  const MeasurementSection(
-                    humidty: 67,
-                    pressure: 1000,
-                    wind: 32,
-                  ),
-                  const VerticalSpace(spaceLength: Spacing.space24),
-                  const Divider(),
-                  const VerticalSpace(spaceLength: Spacing.space32),
-                  const ForecastSection(),
+                  if (state.status == WeatherStatus.loading) ...[
+                    DayDateSection(
+                      day: state.weekDay,
+                      date: state.dateToday,
+                    ),
+                    const VerticalSpace(spaceLength: Spacing.space24),
+                    SelectCitySection(cityName: state.cityName),
+                    const VerticalSpace(spaceLength: Spacing.space32),
+                    WeatherSummary(
+                      temparature: state.temparature,
+                      weatherCondition: state.weather,
+                    ),
+                    const VerticalSpace(spaceLength: Spacing.space32),
+                    const Divider(),
+                    const VerticalSpace(spaceLength: Spacing.space24),
+                    MeasurementSection(
+                      humidty: state.humidity.toDouble(),
+                      pressure: state.pressure.toDouble(),
+                      wind: state.wind,
+                    ),
+                    const VerticalSpace(spaceLength: Spacing.space24),
+                    const Divider(),
+                    const VerticalSpace(spaceLength: Spacing.space32),
+                    ForecastSection(forecastList: state.forcastList),
+                  ],
+                  if (state.status == WeatherStatus.loaded) ...[
+                    DayDateSection(
+                      day: state.weekDay,
+                      date: state.dateToday,
+                    ),
+                    const VerticalSpace(spaceLength: Spacing.space24),
+                    SelectCitySection(cityName: state.cityName),
+                    const VerticalSpace(spaceLength: Spacing.space32),
+                    WeatherSummary(
+                      temparature: state.temparature,
+                      weatherCondition: state.weather,
+                    ),
+                    const VerticalSpace(spaceLength: Spacing.space32),
+                    const Divider(),
+                    const VerticalSpace(spaceLength: Spacing.space24),
+                    MeasurementSection(
+                      humidty: state.humidity.toDouble(),
+                      pressure: state.pressure.toDouble(),
+                      wind: state.wind,
+                    ),
+                    const VerticalSpace(spaceLength: Spacing.space24),
+                    const Divider(),
+                    const VerticalSpace(spaceLength: Spacing.space32),
+                    ForecastSection(forecastList: state.forcastList),
+                  ]
                 ],
               ),
             ),

@@ -4,9 +4,9 @@ import 'package:json_annotation/json_annotation.dart';
 part 'coord_entity.g.dart';
 
 @JsonSerializable()
-class Coord extends Equatable {
-  final double? lat;
-  final double? lon;
+class Coord with EquatableMixin {
+  final double lat;
+  final double lon;
 
   const Coord({required this.lat, required this.lon});
 

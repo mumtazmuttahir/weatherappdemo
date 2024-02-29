@@ -4,10 +4,10 @@ import 'package:json_annotation/json_annotation.dart';
 part 'clouds_entity.g.dart';
 
 @JsonSerializable()
-class Clouds extends Equatable {
-  final int? all;
+class Clouds with EquatableMixin {
+  final int all;
 
-  const Clouds({this.all});
+  const Clouds({required this.all});
 
   factory Clouds.fromJson(Map<String, dynamic> json) => _$CloudsFromJson(json);
 

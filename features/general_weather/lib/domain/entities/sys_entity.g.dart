@@ -7,7 +7,7 @@ part of 'sys_entity.dart';
 // **************************************************************************
 
 Sys _$SysFromJson(Map<String, dynamic> json) => Sys(
-      pod: json['pod'] as String?,
+      pod: json['pod'] as String,
     );
 
 Map<String, dynamic> _$SysToJson(Sys instance) => <String, dynamic>{
