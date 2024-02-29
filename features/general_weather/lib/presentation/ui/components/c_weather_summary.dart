@@ -9,7 +9,7 @@ class WeatherSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 32.0, right: 32.0),
+      padding: screenPadding,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -31,7 +31,7 @@ class WeatherSummary extends StatelessWidget {
                   const Column(
                     children: [
                       Text(
-                        '°',
+                        degree,
                         style: OrganizationTextStyle.heading2,
                       ),
                     ],

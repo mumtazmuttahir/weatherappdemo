@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:general_weather/configs/constants/constants.dart';
 import 'package:injectable/injectable.dart';
 import 'package:general_weather/domain/domain.dart';
 import 'package:shared_design_components/constants/constants.dart';
@@ -27,6 +28,7 @@ class FetchWeatherCubit extends Cubit<FetchWeatherState> {
     CityDesc city = listOfCities.cities[0];
     double latitude = city.latitude;
     double longitiude = city.longitude;
+    emit(state.withStatus(WeatherStatus.refreshing));
     fetchWeather(latitude, longitiude);
   }
 
@@ -34,11 +36,11 @@ class FetchWeatherCubit extends Cubit<FetchWeatherState> {
     CityDesc city = listOfCities.cities[cityNumber];
     double latitude = city.latitude;
     double longitiude = city.longitude;
+    emit(state.withStatus(WeatherStatus.loading));
     fetchWeather(latitude, longitiude);
   }
 
   void fetchWeather(double latitude, double longitude) async {
-    emit(state.withStatus(WeatherStatus.loading));
     FetchWeatherRequest request =
         FetchWeatherRequest(latitude: latitude, longitude: longitude);
     CityWeather response = await _fetchWeatherUseCase.call(parameters: request);
@@ -51,7 +53,7 @@ class FetchWeatherCubit extends Cubit<FetchWeatherState> {
       String dateNow =
           '${date.day} ${Month.getMonthName(date.month)} ${date.year}';
       cityName = response.city!.name;
-      double currentTemparature = response.list![0].main.temp - 273.16;
+      double currentTemparature = response.list![0].main.temp - klevinConstant;
       String weather = response.list![0].weather[0].main;
       int humidity = response.list![0].main.humidity;
       int pressure = response.list![0].main.pressure;
@@ -88,7 +90,7 @@ class FetchWeatherCubit extends Cubit<FetchWeatherState> {
     String dateNow =
         '${date.day} ${Month.getMonthName(date.month)} ${date.year}';
 
-    double currentTemparature = instance.main.temp - 273.16;
+    double currentTemparature = instance.main.temp - klevinConstant;
     String weather = instance.weather[0].main;
     int humidity = instance.main.humidity;
     int pressure = instance.main.pressure;

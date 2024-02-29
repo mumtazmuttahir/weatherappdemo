@@ -29,9 +29,9 @@ class ForecastSection extends StatelessWidget {
                         backgroundColor: OrganizationColors.primaryAccent,
                         forgroundColor: OrganizationColors.pearl,
                         minimumTemparature:
-                            forecastList![0].main.tempMin - 273.16,
+                            forecastList![0].main.tempMin - klevinConstant,
                         maximumTemparature:
-                            forecastList![0].main.tempMax - 273.16,
+                            forecastList![0].main.tempMax - klevinConstant,
                       )
                     : SingleDayForecastBox(
                         indexNumber: index,
@@ -42,9 +42,9 @@ class ForecastSection extends StatelessWidget {
                         backgroundColor: OrganizationColors.secondaryBackground,
                         forgroundColor: OrganizationColors.primaryContent,
                         minimumTemparature:
-                            forecastList![index].main.tempMin - 273.16,
+                            forecastList![index].main.tempMin - klevinConstant,
                         maximumTemparature:
-                            forecastList![index].main.tempMax - 273.16,
+                            forecastList![index].main.tempMax - klevinConstant,
                       ),
           ],
         ),

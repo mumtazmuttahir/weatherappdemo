@@ -32,7 +32,7 @@ class _GeneralWeatherScreenState extends State<GeneralWeatherScreen> {
   void initState() {
     super.initState();
     timer = Timer.periodic(
-        const Duration(milliseconds: 60000),
+        const Duration(milliseconds: sixtySeconds),
         (Timer t) => setState(() {
               counter++;
               if (counter > 4) {
@@ -57,6 +57,7 @@ class _GeneralWeatherScreenState extends State<GeneralWeatherScreen> {
     return BlocConsumer<FetchWeatherCubit, FetchWeatherState>(
       listener: (context, state) {},
       builder: (context, state) {
+        print(state.status);
         return Scaffold(
           body: RefreshIndicator(
             onRefresh: _refreshData,
@@ -120,7 +121,7 @@ class _GeneralWeatherScreenState extends State<GeneralWeatherScreen> {
                     ],
                     if (state.status == WeatherStatus.refreshing) ...[
                       const Center(
-                        child: CircularProgressIndicator(),
+                        child: SizedBox(child: CircularProgressIndicator()),
                       )
                     ],
                     if (state.status == WeatherStatus.error) ...[
