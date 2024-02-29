@@ -23,7 +23,7 @@ class SelectCitySection extends StatelessWidget {
               color: Colors.black.withOpacity(0.1),
               spreadRadius: 5,
               blurRadius: 7,
-              offset: const Offset(0, 1), // changes position of shadow
+              offset: const Offset(0, 1),
             ),
           ],
         ),
