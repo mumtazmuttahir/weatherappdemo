@@ -9,7 +9,7 @@ class SelectCitySection extends StatelessWidget {
     return Padding(
       padding: screenPadding,
       child: ElevatedButton(
-        onPressed: null,
+        onPressed: () {},
         style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
@@ -18,7 +18,7 @@ class SelectCitySection extends StatelessWidget {
           ),
         ),
         child: SizedBox(
-          width: 160,
+          width: 175,
           height: 40,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -26,10 +26,13 @@ class SelectCitySection extends StatelessWidget {
             children: [
               const Icon(
                 Icons.location_pin,
-                color: Colors.black,
+                color: OrganizationColors.primary,
               ),
               const HorizotalSpace(spaceLength: Spacing.space16),
-              Text(cityName),
+              Text(
+                cityName,
+                style: OrganizationTextStyle.subTitle1,
+              ),
             ],
           ),
         ),
