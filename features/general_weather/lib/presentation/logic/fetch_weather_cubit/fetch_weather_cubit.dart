@@ -24,11 +24,12 @@ class FetchWeatherCubit extends Cubit<FetchWeatherState> {
     fetchWeather(latitude, longitiude);
   }
 
-  void refrestWeather() {
+  void refrestWeather() async {
     CityDesc city = listOfCities.cities[0];
     double latitude = city.latitude;
     double longitiude = city.longitude;
     emit(state.withStatus(WeatherStatus.refreshing));
+    await Future.delayed(const Duration(milliseconds: 5000));
     fetchWeather(latitude, longitiude);
   }
 

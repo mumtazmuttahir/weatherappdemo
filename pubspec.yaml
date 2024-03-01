@@ -17,6 +17,8 @@ dependencies:
   injectable:
   json_serializable:
   url_launcher:
+  core:
+    path: ./core
   general_weather:
     path: ./features/general_weather
 

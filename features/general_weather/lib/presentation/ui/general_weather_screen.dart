@@ -57,7 +57,7 @@ class _GeneralWeatherScreenState extends State<GeneralWeatherScreen> {
     return BlocConsumer<FetchWeatherCubit, FetchWeatherState>(
       listener: (context, state) {},
       builder: (context, state) {
-        print(state.status);
+        // print(state.status);
         return Scaffold(
           body: RefreshIndicator(
             onRefresh: _refreshData,
